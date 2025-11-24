@@ -1,12 +1,13 @@
 module.exports = {
+  
   // 添加标题和描述
   base: '/blogs/',
-  title: "MY BLOG",
-  description: "description of my blog",
+  title: "HZ BLOG",
+  description: "学习笔记，记录生活",
   // 设置 favicon.ico 图标
   head: [
     [
-      'link',{ rel: 'icon', href: '/public/favicon.ico' }
+      'link',{ rel: 'icon', href: '/favicon.ico' }
     ]
   ],
   theme: 'reco',
@@ -20,8 +21,8 @@ module.exports = {
       {
         text: "hz 的博客",
         items: [
-          { text: "掘金", link: "https://juejin.cn/user/233526039432445" },
-          { text: "Github", link: "https://github.com/Xusssyyy" }
+          { text: "掘金", link: "" },
+          { text: "Github", link: "" }
         ]
       }
     ],
@@ -29,6 +30,7 @@ module.exports = {
     authorAvatar: "/avatar.jpg",
     sidebar: 'auto',//自动生成侧边栏
     type: 'blog',
+    darkMode:true,
     // 博客配置
     blogConfig: {
       category: {
@@ -40,10 +42,17 @@ module.exports = {
         text: "Tag", // 默认文案 “标签”
       },
     },
+    prevText: '上一篇', // 自定义「上一篇」文案（默认「上一篇」）
+    nextText: '下一篇', // 自定义「下一篇」文案（默认「下一篇」）
+    // 可选：是否在首页显示上一篇/下一篇（默认false，首页不需要）
+    homePrevNext: false,
   },
   locales: {
     "/": {
       lang: "zh-CN",
     },
+  },
+  devServer: {
+    open: false // 禁用自动打开浏览器
   },
 };
