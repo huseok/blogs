@@ -1,7 +1,7 @@
 module.exports = {
   
-  // 添加标题和描述
   base: '/blogs/',
+  // 添加标题和描述
   title: "HZ BLOG",
   description: "学习笔记，记录生活",
   // 设置 favicon.ico 图标
