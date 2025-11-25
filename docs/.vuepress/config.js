@@ -49,6 +49,27 @@ module.exports = {
     // 可选：是否在首页显示上一篇/下一篇（默认false，首页不需要）
     homePrevNext: false,
   },
+  plugins: [
+    [
+      '@vuepress-reco/vuepress-plugin-bgm-player',
+      {
+        audios: [
+          {
+            name: 'LOSER',
+            artist: '米津玄師',
+            url: 'https://lv-sycdn.kuwo.cn/67b4980f6aaaaf3a7df0562a3542ca22/69256e40/resource/30106/trackmedia/M500002eodOF0mvr4e.mp3?bitrate$128&from=vip',
+            cover: 'https://p1.music.126.net/qTSIZ27qiFvRoKj-P30BiA==/109951165895951287.jpg?param=200y200'
+          }
+        ] ,
+        // 是否默认缩小
+        autoShrink: true ,
+        // 缩小时缩为哪种模式
+        shrinkMode: 'float',
+        // 悬浮窗样式
+        floatStyle:{ bottom: '10px', 'z-index': '999999' }
+      }
+    ]
+  ],
   locales: {
     "/": {
       lang: "zh-CN",
