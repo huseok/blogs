@@ -29,6 +29,8 @@ module.exports = {
     logo: "/avatar.jpg",
     authorAvatar: "/avatar.jpg",
     sidebar: 'auto',//自动生成侧边栏
+    sidebarDepth: 2, // 子页面侧边栏显示层级
+    collapsible: true, // 子页面侧边栏可折叠
     type: 'blog',
     darkMode:true,
     // 博客配置

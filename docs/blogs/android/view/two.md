@@ -6,7 +6,6 @@ categories:
 tags:
   - android
   - 自定义view
-sticky: 2
 ---
 
 ### 自定义view使用
