@@ -1,6 +1,6 @@
 ---
-title: LinearLayout
-date: 2025-11-24
+title: LinearLayout 源码分析
+date: 2025-11-25
 categories:
   - android
   - 源码分析
@@ -49,16 +49,16 @@ View 和 ViewGroup 主要是 测量（onMeasure）、布局（onLayout）、绘�
         int weightedMaxWidth = 0;       // 所有 layout_weight >0 的 childView 中宽度的最大值
         boolean allFillParent = true;
         float totalWeight = 0;          // 所有 childView 的 weight 之和
-        ······
+        ......
         final int count = getVirtualChildCount();
-        ······
+        ......
         // See how tall everyone is. Also remember max width.
         for (int i = 0; i < count; ++i) {
-          ······
+          ......
           final LayoutParams lp = (LayoutParams) child.getLayoutParams();
             // 计算总权重 totalWeight
           totalWeight += lp.weight;
-          ······
+          ......
           final boolean useExcessSpace = lp.height == 0 && lp.weight > 0;//正常写weight时
           if (heightMode == MeasureSpec.EXACTLY && useExcessSpace) {
               // 不测量仅使用多余空间布局的子视图。这些视图将在稍后进行测量
@@ -93,12 +93,12 @@ View 和 ViewGroup 主要是 测量（onMeasure）、布局（onLayout）、绘�
               }
           }
           // 处理基线、宽度等
-          ······
+          ......
       }
 ```
 
 初步测量每个子 View ，同时统计关键信息，如总权重totalWeight、已使用的总长度mTotalLength等
-***measureChildBeforeLayout()*** 测量子 View 前面设置为WRAP_CONTENT了，计算每个 childView 的大小,ViewGroup :measureChildWithMargins->view measure
+**measureChildBeforeLayout()** 测量子 View 前面设置为WRAP_CONTENT了，计算每个 childView 的大小,ViewGroup :measureChildWithMargins->view measure
 
 ### 1.2 第二次遍历，特殊情况处理
 
@@ -107,7 +107,7 @@ if (useLargestChild &&
         (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED)) {
     mTotalLength = 0;
     for (int i = 0; i < count; ++i) {
-      ······
+      ......
       final int totalLength = mTotalLength;
       //用来计算mTotalLength，实际未设置weight的高度不会受影响，但是如果父view设置wrap_content会导致整体变高
       mTotalLength = Math.max(totalLength, totalLength + largestChildHeight +
@@ -139,7 +139,7 @@ if (skippedMeasure
   float remainingWeightSum = mWeightSum > 0.0f ? mWeightSum : totalWeight;
   mTotalLength = 0;
   for (int i = 0; i < count; ++i) {
-    ······
+    ......
     if (childWeight > 0) {
       //计算子view分配空间
       final int share = (int) (childWeight * remainingExcess / remainingWeightSum);
@@ -168,15 +168,15 @@ if (skippedMeasure
     }
     
       //后续MaxWidth等逻辑
-      ······
+      ......
   }
-······
+......
 } else {
   // We have no limit, so make all weighted views as tall as the largest child.
   // Children will have already been measured once.
   if (useLargestChild && heightMode != MeasureSpec.EXACTLY) {
     for (int i = 0; i < count; i++) {
-      ······
+      ......
       //设置useLargestChild且weight>0,将高度设置为最高子view
       float childExtra = lp.weight;
       if (childExtra > 0) {
@@ -225,7 +225,7 @@ private void setMeasuredDimensionRaw(int measuredWidth, int measuredHeight) {
 ### 2.1 layoutVertical 分析
 ```  java
 void layoutVertical(int left, int top, int right, int bottom) {
-  ······
+  ......
   //根据gravity确定位置
   final int majorGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
   final int minorGravity = mGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK;
@@ -248,17 +248,17 @@ void layoutVertical(int left, int top, int right, int bottom) {
       if (child == null) {
           childTop += measureNullChild(i);
       } else if (child.getVisibility() != GONE) {
-          ······
+          ......
           final int layoutDirection = getLayoutDirection();
           final int absoluteGravity = Gravity.getAbsoluteGravity(gravity, layoutDirection);
           switch (absoluteGravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
-            ······
+            ......
           }
-          ······
+          ......
           setChildFrame(child, childLeft, childTop + getLocationOffset(child),
                   childWidth, childHeight);
           childTop += childHeight + lp.bottomMargin + getNextLocationOffset(child);
-          ······
+          ......
         }
   }
 
