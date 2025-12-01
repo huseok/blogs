@@ -1,5 +1,5 @@
 ---
-title: LinearLayout
+title: 常用的adb命令
 date: 2025-11-25
 categories:
   - android
